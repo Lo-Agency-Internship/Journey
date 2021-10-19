@@ -12,7 +12,8 @@
   },
   "devDependencies": {
     "eslint": "^8.0.1",
-    "nodemon": "^2.0.13"
+    "nodemon": "^2.0.13",
+    "sequelize-cli": "^6.2.0"
   },
   "dependencies": {
     "@lo-agency/logger": "^1.3.1",
