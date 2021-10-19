@@ -1,0 +1,13 @@
+{
+  "env": {
+      "node": true,
+      "commonjs": true,
+      "es2021": true,
+      "jest": true
+  },
+  "root": true,
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "sourceType": "module"
+    }
+}
