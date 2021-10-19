@@ -6,6 +6,10 @@
   "author": "Mojtaba & Hosna",
   "license": "MIT",
   "private": false,
+  "script":{
+    "start": "node src/index.js",
+    "dev": "eslint \"**/*.js\" --ignore-pattern node_modules/ && nodemon src/index.js"
+  },
   "devDependencies": {
     "eslint": "^8.0.1",
     "nodemon": "^2.0.13"
