@@ -14,7 +14,11 @@ module.exports = {
       },
       roadmap_id: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Roadmap",
+          key: "id",
+        },
       },
       start_date: {
         allowNull: false,
