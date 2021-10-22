@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Roadmap extends Model {
     /**
@@ -10,14 +8,17 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      this.hasMany(models.Phase, {foreignKey: roadmap_id});
+      this.hasMany(models.Phase, { foreignKey: "roadmap_id" });
     }
-  };
-  Roadmap.init({
-    name: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'Roadmap',
-  });
+  }
+  Roadmap.init(
+    {
+      name: DataTypes.STRING,
+    },
+    {
+      sequelize,
+      modelName: "Roadmap",
+    }
+  );
   return Roadmap;
 };
