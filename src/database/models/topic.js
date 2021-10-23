@@ -42,6 +42,10 @@ module.exports = (sequelize, DataTypes) => {
   }
   Topic.init(
     {
+      uuid: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+      },
       title: {
         type: DataTypes.STRING,
         allowNull: false,

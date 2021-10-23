@@ -30,6 +30,10 @@ module.exports = (sequelize, DataTypes) => {
   }
   Project.init(
     {
+      uuid: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+      },
       phase_id: {
         type: DataTypes.INTEGER,
         allowNull: false,

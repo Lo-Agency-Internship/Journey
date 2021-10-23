@@ -21,6 +21,10 @@ module.exports = (sequelize, DataTypes) => {
   }
   Resource.init(
     {
+      uuid: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+      },
       link: {
         type: DataTypes.STRING,
         allowNull: false,

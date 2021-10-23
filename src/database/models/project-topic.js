@@ -13,6 +13,10 @@ module.exports = (sequelize, DataTypes) => {
   }
   ProjectTopic.init(
     {
+      uuid: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+      },
       topic_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
