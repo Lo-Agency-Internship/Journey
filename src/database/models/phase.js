@@ -36,6 +36,9 @@ module.exports = (sequelize, DataTypes) => {
         onUpdate: "CASCADE",
       });
     }
+    toJSON() {
+      return { ...this.get(), id: undefined, roadmap_id: undefined };
+    }
   }
   Phase.init(
     {
