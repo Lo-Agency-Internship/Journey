@@ -29,7 +29,6 @@ module.exports = {
         type: Sequelize.DATE,
       },
       learning_days: {
-        allowNull: false,
         type: Sequelize.INTEGER,
       },
       createdAt: {
