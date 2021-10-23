@@ -16,12 +16,29 @@ module.exports = (sequelize, DataTypes) => {
   }
   Phase.init(
     {
-      name: DataTypes.STRING,
-      roadmap_id: DataTypes.INTEGER,
-      start_date: DataTypes.DATE,
-      end_date: DataTypes.DATE,
-      evaluation_date: DataTypes.DATE,
-      learning_days: DataTypes.INTEGER,
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      roadmap_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      start_date: {
+        type: DataTypes.DATE,
+        allowNull: false,
+      },
+      end_date: {
+        type: DataTypes.DATE,
+        allowNull: false,
+      },
+      evaluation_date: {
+        type: DataTypes.DATE,
+        allowNull: false,
+      },
+      learning_days: {
+        type: DataTypes.DATE,
+      },
     },
     {
       sequelize,

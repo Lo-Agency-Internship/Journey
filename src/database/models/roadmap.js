@@ -13,7 +13,10 @@ module.exports = (sequelize, DataTypes) => {
   }
   Roadmap.init(
     {
-      name: DataTypes.STRING,
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
     },
     {
       sequelize,
