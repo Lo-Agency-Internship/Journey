@@ -60,7 +60,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       learning_days: {
-        type: DataTypes.DATE,
+        type: DataTypes.INTEGER,
       },
     },
     {
