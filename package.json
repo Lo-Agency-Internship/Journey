@@ -8,12 +8,14 @@
   "private": false,
   "scripts": {
     "start": "node src/index.js",
+    "db:migrate": "npx sequelize-cli db:migrate",
+    "db:migrate-status":"npx sequelize-cli db:migrate:status",
+    "db:migrate-undo":"npx sequelize-cli db:migrate:undo",
     "dev": "eslint \"**/*.js\" --ignore-pattern node_modules/ && nodemon src/index.js"
   },
   "devDependencies": {
     "eslint": "^8.0.1",
-    "nodemon": "^2.0.13",
-    "sequelize-cli": "^6.2.0"
+    "nodemon": "^2.0.13"
   },
   "dependencies": {
     "@lo-agency/logger": "^1.3.1",
@@ -21,7 +23,8 @@
     "express": "^4.17.1",
     "pg": "^8.7.1",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.7.0"
+    "sequelize": "^6.7.0",
+    "sequelize-cli": "^6.2.0"
   },
   "engines": {
     "node": "^12.22.0 || ^14.17.0 || >=16.0.0"
