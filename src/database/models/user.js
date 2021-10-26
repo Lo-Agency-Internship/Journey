@@ -16,6 +16,10 @@ module.exports = (sequelize, DataTypes) => {
   }
   User.init(
     {
+      uuid: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+      },
       firstName: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -51,6 +55,10 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       approved: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+      },
+      isAdmin: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       },
