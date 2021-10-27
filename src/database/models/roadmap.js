@@ -9,7 +9,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate({ Phase }) {
       this.hasMany(Phase, {
-        foreignKey: "roadmap_id",
+        foreignKey: {
+          name: "roadmap_id",
+          allowNull: false
+        },
         as: "phases",
         onDelete: "CASCADE",
         onUpdate: "CASCADE",
