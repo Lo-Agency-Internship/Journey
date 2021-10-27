@@ -30,8 +30,8 @@ module.exports = (sequelize, DataTypes) => {
           notNull: { msg: "firstName must not be null" },
           notEmpty: { msg: "firstName must not be empty" },
           len: {
-            args: [3, 30],
-            msg: "firstName length must be between 3 and 30",
+            args: [3, 100],
+            msg: "firstName length must be between 3 and 100",
           },
         },
       },
@@ -45,8 +45,8 @@ module.exports = (sequelize, DataTypes) => {
           notNull: { msg: "lastName must not be null" },
           notEmpty: { msg: "lastName must not be empty" },
           len: {
-            args: [3, 50],
-            msg: "lastName length must be between 3 and 50",
+            args: [3, 100],
+            msg: "lastName length must be between 3 and 100",
           },
         },
       },
