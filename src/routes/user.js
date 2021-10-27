@@ -1,17 +1,15 @@
 require("dotenv/config");
 const express = require("express");
-const { User } = require("../database/models");
 const userRouter = express.Router();
-const { getAllUsers } = require("../controllers/user")
+const { getAllUsers, getUser, updateUser, deleteUser } = require("../controllers/user");
+const isAuth = require("../middleware/is-auth");
 
-userRouter.get("/", getAllUsers);
+userRouter.get("/", isAuth ,getAllUsers);
 
-//userRouter.get("/:id", getUser);
+userRouter.get("/:id", isAuth, getUser);
 
-//userRouter.post("/", insertUser);
+userRouter.put("/:id", isAuth, updateUser);
 
-//userRouter.put("/:id", updateUser);
-
-//userRouter.delete("/:id", deleteUser);
+userRouter.delete("/:id", isAuth, deleteUser);
 
 module.exports = userRouter;
