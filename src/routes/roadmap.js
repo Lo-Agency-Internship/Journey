@@ -1,6 +1,7 @@
 "use strict";
 require("dotenv").config();
 const express = require("express");
+const isAuth = require("../middleware/is-auth");
 const roadmapRouter = express.Router();
 const {
   getAllRoadmaps,
@@ -11,14 +12,14 @@ const {
 } = require("../controllers/roadmap");
 
 
-roadmapRouter.get("/", getAllRoadmaps);
+roadmapRouter.get("/", isAuth, getAllRoadmaps);
 
-roadmapRouter.get("/:id", getRoadmap);
+roadmapRouter.get("/:id", isAuth, getRoadmap);
 
-roadmapRouter.post("/", insertRoadmap);
+roadmapRouter.post("/", isAuth, insertRoadmap);
 
-roadmapRouter.put("/:id", updateRoadmap);
+roadmapRouter.put("/:id", isAuth, updateRoadmap);
 
-roadmapRouter.delete("/:id", deleteRoadmap);
+roadmapRouter.delete("/:id", isAuth, deleteRoadmap);
 
 module.exports = roadmapRouter;
