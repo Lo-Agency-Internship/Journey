@@ -14,7 +14,7 @@ exports.register = async (req, res, nex) => {
     let user = await User.findOne({
       where: { email },
     });
-    if (!user) return res.status(400).json({ error: "user already exists!" });
+    if (user) return res.status(400).json({ error: "user already exists!" });
 
     user = await User.create({ firstName, lastName, email, password });
     res.status(201).json(user);
