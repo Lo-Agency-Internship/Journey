@@ -11,7 +11,8 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(Phase, {
         foreignKey: {
           name: "roadmap_id",
-          allowNull: false
+          allowNull:false
+
         },
         as: "phases",
         onDelete: "CASCADE",
