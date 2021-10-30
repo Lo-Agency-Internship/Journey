@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(morganMiddleware);
 app.use(corsHeaders);
 app.use(apiPrefix, authRoutes);
-
+app.use('/users', require('../src/routes/user'));
 app.all("*", (req, res) => {
   Logger.http(`route: url '${req.url}' not found`);
   res.status(404).send("route not found");
