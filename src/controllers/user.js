@@ -25,27 +25,32 @@ module.exports = {
           return res.status(500).json(err.message);
         }
     },
+    // ToDo: hash password if that exists in body
+    updateUser: async(req, res) => {
+      const uuid = req.params.id;
+    try {
+      const user = await User.findOne({ where: { uuid } });
+      if (user === null) {
+        Logger.warn(`user not found by id: ${uuid}`);
+        return res
+          .status(404)
+          .json({ msg: `user not found by id: ${uuid}` });
+      }
 
-    updateUser: async (req, res) => {
-        const uuid = req.params.id;
-        const { firstName, lastName, email, password } = req.body;
-        try {
-          const user = await User.findOne({
-            where: { uuid },
-          });
-      
-          user.firstName = firstName;
-          user.lastName = lastName;
-          user.email = email;
-          user.password = password;
-      
-          await user.save();
-      
-          return res.status(200).json(user);
-        } catch (err) {
-          Logger.error(err.message);
-          return res.status(500).json(err.message);
-        }
+      await User.update(req.body, {
+        where: {
+          uuid: user.uuid,
+        },
+      });
+
+      const updatedUser = await User.findOne({ where: { uuid } });
+      return res
+        .status(200)
+        .json({ msg: "user is changed", updatedUser });
+    } catch (error) {
+      Logger.error(error.message);
+      return res.status(500).json(error.message);
+    }
     },
 
     deleteUser: async (req, res) => {
