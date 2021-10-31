@@ -26,17 +26,6 @@ module.exports = {
         }
     },
 
-    insertUser: async (req, res) => {
-        const { firstName, lastName, email, password } = req.body;
-        try {
-          const user = await User.create({ firstName, lastName, email, password });
-          return res.status(201).json(user);
-        } catch (err) {
-          Logger.error(err.message);
-          return res.status(500).json(err.message);
-        }
-    },
-
     updateUser: async (req, res) => {
         const uuid = req.params.id;
         const { firstName, lastName, email, password } = req.body;

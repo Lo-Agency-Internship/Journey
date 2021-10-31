@@ -52,7 +52,7 @@ exports.login = async (req, res, nex) => {
       { user: user.uuid },
       process.env.ACCESS_TOKEN_SECRET,
       {
-        expiresIn: "1h",
+        expiresIn: "24h",
       }
     );
     res.status(200).json({ token: accessToken });
