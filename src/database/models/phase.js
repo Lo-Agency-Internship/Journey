@@ -49,6 +49,14 @@ module.exports = (sequelize, DataTypes) => {
       name: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          notNull: { msg: "name must not be null"},
+          notEmpty: { msg: "name must not be emoty"},
+          len: {
+            args: [1, 20],
+            msg: "name length must be between 1 and 20"
+          }
+        }
       },
       roadmap_id: {
         type: DataTypes.INTEGER,
@@ -57,17 +65,38 @@ module.exports = (sequelize, DataTypes) => {
       start_date: {
         type: DataTypes.DATE,
         allowNull: false,
+        validate: {
+          notNull: { msg: "start date must not be null" },
+          notEmpty: { msg: "start date must not be empty" },
+          isDate: { msg: "start date must be only a date string"}
+        }
       },
       end_date: {
         type: DataTypes.DATE,
         allowNull: false,
+        validate: {
+          notNull: { msg: "end date must not be null" },
+          notEmpty: { msg: "end date must not be empty" },
+          isDate: { msg: "end date must be only a date string"}
+        }
       },
       evaluation_date: {
         type: DataTypes.DATE,
         allowNull: false,
+        validate: {
+          notNull: { msg: "evaluation date must not be null" },
+          notEmpty: { msg: "evaluation date must not be empty" },
+          isDate: { msg: "evaluation date must be only a date string"}
+        }
       },
       learning_days: {
         type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notNull: { msg: "learning days must not be null" },
+          notEmpty: { msg: "learning days must not be empty" },
+          isInt: { msg: "learning days must be an integer"}
+        }
       },
     },
     {
