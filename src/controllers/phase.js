@@ -15,11 +15,10 @@ module.exports = {
   },
 
   getPhase: async (req, res) => {
-    const uuid = req.params.id;
+    const uuid = req.params.pid;
     try {
-      const phase = Phase.findOne({
-        where: { uuid },
-      });
+      const phase = await Phase.findOne({ where: { uuid } });
+      
       if (phase === null) {
         Logger.warn(`phase not found by id: ${uuid}`);
         return res.status(404).json({ msg: `phase not found by id: ${uuid}` });
@@ -34,16 +33,15 @@ module.exports = {
   insertPhase: async (req, res) => {
     const { name, start_date, end_date, evaluation_date, learning_days } =
       req.body;
-
     try {
       const newPhase = await Phase.create({
         name,
+        roadmap_id: req.params.id,
         start_date,
         end_date,
         evaluation_date,
-        learning_days,
+        learning_days: learning_days,
       });
-
       return res.status(201).json(newPhase);
     } catch (error) {
       Logger.error(error.message);
@@ -52,9 +50,9 @@ module.exports = {
   },
 
   updatePhase: async (req, res) => {
-    const uuid = req.params.id;
+    const uuid = req.params.pid;
     try {
-      const phase = await Phase.findOne({ where: uuid });
+      const phase = await Phase.findOne({ where: { uuid } });
       if (phase === null) {
         Logger.warn(`phase not found by id: ${uuid}`);
         return res.status(404).json({ msg: `phase not found by id: ${uuid}` });
@@ -74,19 +72,15 @@ module.exports = {
   },
 
   deletePhase: async (req, res) => {
-    const uuid = req.params.id;
+    const uuid = req.params.pid;
     try {
-      const phase = await Phase.findOne({ where: uuid });
+      const phase = await Phase.findOne({ where: { uuid } });
       if (phase === null) {
         Logger.warn(`phase not found by id: ${uuid}`);
         return res.status(404).json({ msg: `phase not found by id: ${uuid}` });
       }
 
-      await Phase.destroy({
-        where: {
-          uuid: phase.uuid,
-        },
-      });
+      await phase.destroy();
 
       return res.status(200).json({ msg: "phase is deleted" });
     } catch (error) {
