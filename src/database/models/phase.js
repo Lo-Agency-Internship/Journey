@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
       });
     }
     toJSON() {
-      return { ...this.get(), id: undefined, roadmap_id: undefined };
+      return { ...this.get(), id: undefined };
     }
   }
   Phase.init(
@@ -59,7 +59,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       },
       roadmap_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         allowNull: false,
       },
       start_date: {
