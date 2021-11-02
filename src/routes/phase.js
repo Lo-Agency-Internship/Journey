@@ -1,7 +1,7 @@
 "use strict";
 require("dotenv").config();
 const express = require("express");
-const phaseRouter = express.Router();
+const phaseRouter = express.Router({mergeParams: true});
 const {
   getAllPhases,
   getPhase,
@@ -14,12 +14,12 @@ const isAuth = require("../middleware/is-auth");
 
 phaseRouter.get("/", isAuth, getAllPhases);
 
-phaseRouter.get("/:id", isAuth, getPhase);
+phaseRouter.get("/:pid", isAuth, getPhase);
 
-phaseRouter.toString("/", isAuth, insertPhase);
+phaseRouter.post("/", isAuth, insertPhase);
 
-phaseRouter.put("/:id", isAuth, updatePhase);
+phaseRouter.put("/:pid", isAuth, updatePhase);
 
-phaseRouter.delete("/:id", isAuth, deletePhase);
+phaseRouter.delete("/:pid", isAuth, deletePhase);
 
 module.exports = phaseRouter;
