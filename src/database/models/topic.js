@@ -59,11 +59,11 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       phase_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         allowNull: false,
       },
       category_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         allowNull: false,
       },
       type: {
