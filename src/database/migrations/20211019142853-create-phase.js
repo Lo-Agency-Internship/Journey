@@ -19,7 +19,7 @@ module.exports = {
       },
       roadmap_id: {
         allowNull: false,
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
       },
       start_date: {
         allowNull: false,
