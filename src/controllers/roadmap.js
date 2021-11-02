@@ -16,9 +16,8 @@ module.exports = {
 
   getRoadmap: async (req, res) => {
     const uuid = req.params.id;
-
     try {
-      const roadmap = Roadmap.findOne({
+      const roadmap = await Roadmap.findOne({
         where: { uuid },
       });
       if (roadmap === null) {
@@ -36,8 +35,13 @@ module.exports = {
 
   insertRoadmap: async (req, res) => {
     const { name } = req.body;
-
     try {
+      const roadmap = await Roadmap.findOne({ where: { name } });
+      if (roadmap)
+        return res
+          .status(400)
+          .json({ error: `roadmap with name '${name}' already exists!` });
+
       const newRoadmap = await Roadmap.create({ name });
       return res.status(201).json(newRoadmap);
     } catch (error) {
@@ -49,7 +53,7 @@ module.exports = {
   updateRoadmap: async (req, res) => {
     const uuid = req.params.id;
     try {
-      const roadmap = await Roadmap.findOne({ where: uuid });
+      const roadmap = await Roadmap.findOne({ where: { uuid } });
       if (roadmap === null) {
         Logger.warn(`roadmap not found by id: ${uuid}`);
         return res
@@ -63,7 +67,10 @@ module.exports = {
         },
       });
 
-      return res.status(200).json({ msg: "roadmap is changed", roadmap });
+      const updatedRoadmap = await Roadmap.findOne({ where: { uuid } });
+      return res
+        .status(200)
+        .json({ msg: "roadmap is changed", updatedRoadmap });
     } catch (error) {
       Logger.error(error.message);
       return res.status(500).json(error.message);
@@ -73,7 +80,7 @@ module.exports = {
   deleteRoadmap: async (req, res) => {
     const uuid = req.params.id;
     try {
-      const roadmap = await Roadmap.findOne({ where: uuid });
+      const roadmap = await Roadmap.findOne({ where: { uuid } });
       if (roadmap === null) {
         Logger.warn(`roadmap not found by id: ${uuid}`);
         return res
@@ -81,11 +88,7 @@ module.exports = {
           .json({ msg: `roadmap not found by id: ${uuid}` });
       }
 
-      await Roadmap.destroy({
-        where: {
-          uuid: roadmap.uuid,
-        },
-      });
+      await roadmap.destroy();
 
       return res.status(200).json({ msg: "roadmap is deleted" });
     } catch (error) {

@@ -33,7 +33,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          isAlpha: { msg: "name must only contains alphabetical characters" },
           notNull: { msg: "name must not be null" },
           notEmpty: { msg: "name must not be empty"},
           len: {

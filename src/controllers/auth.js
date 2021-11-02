@@ -14,7 +14,7 @@ exports.register = async (req, res, nex) => {
     let user = await User.findOne({
       where: { email },
     });
-    if (!user) return res.status(400).json({ error: "user already exists!" });
+    if (user) return res.status(400).json({ error: "user already exists!" });
 
     user = await User.create({ firstName, lastName, email, password });
     res.status(201).json(user);
@@ -41,8 +41,9 @@ exports.login = async (req, res, nex) => {
     });
 
     if (user) isPasswordValid = await bcrypt.compare(password, user.password);
+    
 
-    if (!isPasswordValid || !user.approved)
+    if (isPasswordValid || user.approved) // change the condition
       return res.status(401).json({
         error: "Invalid credentials!",
       });
@@ -51,7 +52,7 @@ exports.login = async (req, res, nex) => {
       { user: user.uuid },
       process.env.ACCESS_TOKEN_SECRET,
       {
-        expiresIn: "1h",
+        expiresIn: "24h",
       }
     );
     res.status(200).json({ token: accessToken });
