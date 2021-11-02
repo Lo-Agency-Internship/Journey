@@ -16,9 +16,8 @@ module.exports = {
 
   getRoadmap: async (req, res) => {
     const uuid = req.params.id;
-
     try {
-      const roadmap = Roadmap.findOne({
+      const roadmap = await Roadmap.findOne({
         where: { uuid },
       });
       if (roadmap === null) {
