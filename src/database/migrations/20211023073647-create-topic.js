@@ -18,11 +18,11 @@ module.exports = {
         allowNull: false,
       },
       phase_id: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         allowNull: false,
       },
       category_id: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         allowNull: false,
       },
       type: {

@@ -15,7 +15,10 @@ app.use(`${apiPrefix}/users`, require('./routes/user'));
 app.use(`${apiPrefix}/roadmaps/:id/phases`, require('./routes/phase'));
 app.use(`${apiPrefix}/roadmaps`, require('./routes/roadmap'));
 app.use(`${apiPrefix}/categories`, require('./routes/category'));
-
+app.use(
+  `${apiPrefix}/roadmaps/:id/phases/:pid/projects`,
+  require("./routes/project")
+);
 
 app.all("*", (req, res) => {
   Logger.http(`route: url '${req.url}' not found`);

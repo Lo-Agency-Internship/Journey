@@ -38,25 +38,51 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: DataTypes.UUIDV4,
       },
       phase_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         allowNull: false,
       },
       name: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          notNull: { msg: "name must not be null" },
+          notEmpty: { msg: "name must not be emoty" },
+          len: {
+            args: [3, 30],
+            msg: "name length must be between 3 and 30",
+          },
+        },
       },
       start_date: {
         type: DataTypes.DATE,
         allowNull: false,
+        validate: {
+          notNull: { msg: "start date must not be null" },
+          notEmpty: { msg: "start date must not be empty" },
+          isDate: { msg: "start date must be only a date string" },
+        },
       },
       end_date: {
         type: DataTypes.DATE,
         allowNull: false,
+        validate: {
+          notNull: { msg: "end date must not be null" },
+          notEmpty: { msg: "end date must not be empty" },
+          isDate: { msg: "end date must be only a date string" },
+        },
       },
       type: {
         type: DataTypes.ENUM("team", "personal", "real"),
         defaultValue: "team",
         allowNull: false,
+        validate: {
+          notNull: { msg: "type must not be null" },
+          notEmpty: { msg: "type must not be empty" },
+          isIn: {
+            args: [["team", "personal", "real"]],
+            msg: "type must be team, personal or real",
+          },
+        },
       },
     },
     {
