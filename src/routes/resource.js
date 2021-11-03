@@ -1,7 +1,7 @@
 "use strict";
 require("dotenv").config();
 const express = require("express");
-const resourceRouter = express.Router();
+const resourceRouter = express.Router({mergeParams: true});
 const {
   getAllResources,
   getResource,
