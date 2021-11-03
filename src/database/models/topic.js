@@ -57,6 +57,14 @@ module.exports = (sequelize, DataTypes) => {
       title: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          notNull: { msg: "title must not be null"},
+          notEmpty: { msg: "title must not be emoty"},
+          len: {
+            args: [3, 20],
+            msg: "title length must be between 3 and 20"
+          }
+        }
       },
       phase_id: {
         type: DataTypes.UUID,
@@ -70,6 +78,14 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.ENUM("optional", "mandatory", "phase specific"),
         allowNull: false,
         defaultValue: "phase specific",
+        validate: {
+          notNull: { msg: "type must not be null" },
+          notEmpty: { msg: "type must not be empty" },
+          isIn: {
+            args: [["optional", "mandatory", "phase specific"]],
+            msg: "type must be optional, mandatory or phase specific",
+          },
+        },
       },
     },
     {
