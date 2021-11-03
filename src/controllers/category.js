@@ -45,7 +45,6 @@ module.exports = {
 
   updateCategory: async (req, res) => {
     const uuid = req.params.cid;
-    console.log(req.params);
     try {
       const category = await Category.findOne({ where: { uuid } });
       if (category === null) {
