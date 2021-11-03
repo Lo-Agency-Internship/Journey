@@ -31,6 +31,11 @@ module.exports = (sequelize, DataTypes) => {
       link: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          notNull: { msg: "link must not be null" },
+          notEmpty: { msg: "link must not be empty" },
+          isUrl: { msg: "link must be a valid url" }
+        },
       },
       topic_id: {
         type: DataTypes.UUID,
