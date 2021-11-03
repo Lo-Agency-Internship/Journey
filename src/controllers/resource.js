@@ -34,8 +34,10 @@ module.exports = {
 
   insertResource: async (req, res) => {
     const { link } = req.body;
+    const topic_id = req.params.tId;
+    
     try {
-      const newResource = await Resource.create({ link });
+      const newResource = await Resource.create({ link, topic_id });
       return res.status(201).json(newResource);
     } catch (error) {
       Logger.error(error.message);
