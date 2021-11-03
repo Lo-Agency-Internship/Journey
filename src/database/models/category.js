@@ -28,6 +28,14 @@ module.exports = (sequelize, DataTypes) => {
       name: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          notNull: { msg: "name must not be null" },
+          notEmpty: { msg: "name must not be emoty" },
+          len: {
+            args: [1, 30],
+            msg: "name length must be between 1 and 30",
+          },
+        },
       },
     },
     {
